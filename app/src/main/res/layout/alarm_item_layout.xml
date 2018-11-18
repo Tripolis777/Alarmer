@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools" android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+>
+
+    <TextView
+            android:text="@string/alarm_name_default_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/alarm_name"
+            android:layout_weight="3"
+            tools:textSize="16sp"/>
+    <TextView
+            android:text="@string/alram_time_default_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_gravity="center"
+            android:id="@+id/alarm_time"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            tools:textSize="30sp"/>
+    <Switch
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/alarm_switch"
+            android:layout_weight="1"/>
+</LinearLayout>

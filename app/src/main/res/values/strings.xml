@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Alarmer</string>
+    <string name="alarm_name_default_text">Alarm Name</string>
+    <string name="alram_time_default_text">00:00</string>
+
+</resources>
