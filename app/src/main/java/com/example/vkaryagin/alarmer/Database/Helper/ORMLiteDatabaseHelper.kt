@@ -35,8 +35,14 @@ class ORMLiteDatabaseHelper(context: Context) : OrmLiteSqliteOpenHelper(context,
         }
 
         //TODO: replace this code
-        alarmRuntimeDao.create(AlarmTable("First Alarm", Calendar.getInstance().getTime(), true))
-        alarmRuntimeDao.create(AlarmTable("Second Alarm",  Calendar.getInstance().getTime(), true))
+        val calendar  = GregorianCalendar()
+        calendar.set(Calendar.MINUTE, 15)
+        calendar.set(Calendar.HOUR, 11)
+        alarmRuntimeDao.create(AlarmTable("First Alarm", calendar, false))
+
+        calendar.set(Calendar.MINUTE, 21)
+        calendar.set(Calendar.HOUR, 12)
+        alarmRuntimeDao.create(AlarmTable("Second Alarm",  calendar, false))
 
         Log.i(className, "create start entries (test) in onCreate")
     }

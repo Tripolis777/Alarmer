@@ -4,14 +4,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.Switch
 import android.widget.TextView
-import com.example.vkaryagin.alarmer.Core.AlarmItem
 import com.example.vkaryagin.alarmer.Database.Schema.AlarmTable
-import com.example.vkaryagin.alarmer.Listener.OnClick.AlarmSwitch
+import com.example.vkaryagin.alarmer.Listener.OnChecked.AlarmSwitch
 import com.example.vkaryagin.alarmer.R
-import kotlinx.android.synthetic.main.alarm_item_layout.view.*
 
 class AlarmListAdapter(private val dataset: List<AlarmTable>) : RecyclerView.Adapter<AlarmListAdapter.AlarmViewHolder>() {
 
@@ -20,8 +17,10 @@ class AlarmListAdapter(private val dataset: List<AlarmTable>) : RecyclerView.Ada
         val timeView = itemView.findViewById(R.id.alarm_time) as TextView
         val enabledView = itemView.findViewById(R.id.alarm_switch) as Switch
 
+        var dataItem : AlarmTable? = null
+
         init {
-            enabledView.setOnClickListener(AlarmSwitch(this))
+            enabledView.setOnCheckedChangeListener(AlarmSwitch(this))
         }
     }
 
@@ -32,8 +31,10 @@ class AlarmListAdapter(private val dataset: List<AlarmTable>) : RecyclerView.Ada
 
     override fun onBindViewHolder(holder: AlarmViewHolder, position: Int) {
         val value = dataset[position]
+
+        holder.dataItem = value
         holder.nameView.text = value.name
-        holder.timeView.text = value.time
+        holder.timeView.text = "${value.hours}:${value.minutes}"
         holder.enabledView.isChecked = value.enabled
     }
 

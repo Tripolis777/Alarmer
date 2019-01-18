@@ -2,22 +2,17 @@ package com.example.vkaryagin.alarmer.Database.Schema
 
 import com.j256.ormlite.field.DatabaseField
 import com.j256.ormlite.table.DatabaseTable
-import java.text.DateFormat
-import java.text.SimpleDateFormat
 import java.util.*
 
 @DatabaseTable(tableName = "alarm")
 class AlarmTable {
-    companion object {
-        @JvmStatic val dateFormat: DateFormat = SimpleDateFormat("HH:mm")
-    }
-
     constructor() {
     }
 
-    constructor(name: String, time: Date, enabled: Boolean) {
+    constructor(name: String, time: Calendar, enabled: Boolean) {
         this.name = name
-        this.time =  dateFormat.format(time)
+        this.hours = time.get(Calendar.HOUR)
+        this.minutes = time.get(Calendar.MINUTE)
         this.enabled = enabled
     }
 
@@ -28,8 +23,13 @@ class AlarmTable {
     var name: String? = null
 
     @DatabaseField
-    var time: String? = null
+    var hours : Int = 0
+
+    @DatabaseField
+    var minutes: Int = 0
 
     @DatabaseField
     var enabled: Boolean = false
+
+
 }

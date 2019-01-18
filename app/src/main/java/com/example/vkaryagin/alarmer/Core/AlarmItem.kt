@@ -5,12 +5,12 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
-class AlarmItem(val name: String, time: Date, val enabled: Boolean) {
+class AlarmItem(val name: String, time: Calendar, val enabled: Boolean) {
 
-    companion object {
-        @JvmStatic val dateFormat: DateFormat = SimpleDateFormat("HH:mm")
-    }
+//    companion object {
+//        @JvmStatic val dateFormat: DateFormat = SimpleDateFormat("HH:mm")
+//    }
 
-    val time: String = dateFormat.format(time)
+//    val time: String = dateFormat.format(time)
 
 }

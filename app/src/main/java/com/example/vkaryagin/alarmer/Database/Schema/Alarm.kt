@@ -6,7 +6,8 @@ object Alarm {
     object AlarmEntry : BaseColumns {
         const val TABLE_NAME = "alarm"
         const val COLUMN_NAME_ALARM_NAME = "name"
-        const val COLUMN_NAME_ALARM_TIME = "time"
+        const val COLUMN_NAME_ALARM_HOURS = "hours"
+        const val COLUMN_NAME_ALARM_MINUTES = "minutes"
         const val COLUMN_NAME_ALARM_ENABLED = "enabled"
     }
 
@@ -14,7 +15,8 @@ object Alarm {
             CREATE TABLE ${AlarmEntry.TABLE_NAME} (
                 ${BaseColumns._ID} INTEGER PRIMARY KEY,
                 ${AlarmEntry.COLUMN_NAME_ALARM_NAME} TEXT,
-                ${AlarmEntry.COLUMN_NAME_ALARM_TIME} TEXT,
+                ${AlarmEntry.COLUMN_NAME_ALARM_HOURS} INTEGER,
+                ${AlarmEntry.COLUMN_NAME_ALARM_MINUTES} INTEGER,
                 ${AlarmEntry.COLUMN_NAME_ALARM_ENABLED} INTEGER)
     """
 

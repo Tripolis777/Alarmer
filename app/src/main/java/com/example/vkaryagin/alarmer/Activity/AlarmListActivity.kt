@@ -1,16 +1,14 @@
-package com.example.vkaryagin.alarmer
+package com.example.vkaryagin.alarmer.Activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.example.vkaryagin.alarmer.Adapter.AlarmListAdapter
-import com.example.vkaryagin.alarmer.Core.AlarmItem
 import com.example.vkaryagin.alarmer.Database.Helper.ORMLiteDatabaseHelper
+import com.example.vkaryagin.alarmer.R
 import com.j256.ormlite.android.apptools.OpenHelperManager
-import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper
 import java.lang.AssertionError
-import java.util.*
 
 class AlarmListActivity : AppCompatActivity() {
 
