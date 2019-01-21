@@ -27,12 +27,13 @@ class AlarmSwitch(private val viewHolder: AlarmListAdapter.AlarmViewHolder) : Co
 
         var alarmIntent = Intent(switch?.context, AlarmReceiver::class.java)
         alarmIntent.putExtra("bundle", bundle)
+        alarmIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
 
         var calendar = GregorianCalendar()
         //calendar.set(Calendar.DATE, System.currentTimeMillis())
 //        calendar.set(Calendar.HOUR, alarmItem.hours)
 //        calendar.set(Calendar.MINUTE, alarmItem.minutes)
-        calendar.add(Calendar.SECOND, 5)
+        calendar.add(Calendar.SECOND, 30)
 
         val alarmManager = switch?.context?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val millis = System.currentTimeMillis()
