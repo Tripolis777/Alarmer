@@ -33,7 +33,7 @@ class AlarmSwitch(private val viewHolder: AlarmListAdapter.AlarmViewHolder) : Co
         //calendar.set(Calendar.DATE, System.currentTimeMillis())
 //        calendar.set(Calendar.HOUR, alarmItem.hours)
 //        calendar.set(Calendar.MINUTE, alarmItem.minutes)
-        calendar.add(Calendar.SECOND, 30)
+        calendar.add(Calendar.SECOND, 5)
 
         val alarmManager = switch?.context?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val millis = System.currentTimeMillis()
