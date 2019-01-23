@@ -53,4 +53,11 @@ class AlarmListActivity : AppCompatActivity() {
             _databaseHelper = null
         }
     }
+
+//    fun openMusicLibrary() {
+//        var openAudioIntent = Intent()
+//        openAudioIntent.setType("audio/*")
+//        openAudioIntent.setAction(Intent.ACTION_GET_CONTENT)
+//        startActivityForResult(openAudioIntent, REQUEST_CODE_BROWSE_AUDIO)
+//    }
 }

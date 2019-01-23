@@ -3,16 +3,13 @@ package com.example.vkaryagin.alarmer.Activity
 import android.app.Activity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.Button
-import android.widget.Toast
 import com.example.vkaryagin.alarmer.BuildConfig
 import com.example.vkaryagin.alarmer.Core.AlarmSharedObject
 import com.example.vkaryagin.alarmer.R
+import com.example.vkaryagin.alarmer.View.SwipeButton
 
 class AlarmActivity : Activity() {
-
-    //private lateinit var buttonClose : Button
+    private lateinit var btnSwipe: SwipeButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,12 +23,13 @@ class AlarmActivity : Activity() {
         Log.e(this.localClassName, "Activity is onCreate()")
         if (BuildConfig.DEBUG) Log.e(this.localClassName, "Alarm name is ${alarmData.name}")
 
-        //buttonClose = findViewById(R.id.buttonClose) as Button
-//        buttonClose.setOnClickListener(object : View.OnClickListener {
-//            override fun onClick(view: View?) {
-//                this@AlarmActivity.finish()
-//            }
-//        })
+        btnSwipe = findViewById(R.id.swipe_btn)
+        btnSwipe.setOnCheckedChangeListener(object : SwipeButton.OnCheckedChangeListener {
+            override fun onCheckedChanged(view: SwipeButton, active: Boolean) {
+                this@AlarmActivity.finish()
+            }
+
+        })
     }
 
     override fun onDestroy() {

@@ -4,7 +4,6 @@ import android.animation.*
 import android.annotation.TargetApi
 import android.content.Context
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
@@ -19,6 +18,10 @@ import com.example.vkaryagin.alarmer.R
 
 class SwipeButton : RelativeLayout {
 
+    interface OnCheckedChangeListener {
+        fun onCheckedChanged(view: SwipeButton, active: Boolean)
+    }
+
     private lateinit var slidingButton: ImageView
     private var initialX: Float = 0f
     private var active: Boolean = false
@@ -28,7 +31,17 @@ class SwipeButton : RelativeLayout {
     private var disabledDrawable: Drawable? = null
     private var enabledDrawable: Drawable? = null
 
-    private var mButtonText: String = "SWIPE"
+    private var mOnCheckedChangeListener: OnCheckedChangeListener? = null
+
+    private var mButtonText : String = "SWIPE"
+
+    var buttonText: String
+    get() = mButtonText
+    set(value) {
+        mButtonText = value
+        invalidate()
+        requestLayout()
+    }
 
     constructor(context: Context) : super(context) {
         init(context, null, -1, -1)
@@ -45,6 +58,10 @@ class SwipeButton : RelativeLayout {
     @TargetApi(21)
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes) {
         init(context, attrs, defStyleAttr, defStyleRes)
+    }
+
+    open fun setOnCheckedChangeListener(listener: OnCheckedChangeListener) {
+        mOnCheckedChangeListener = listener
     }
 
     private fun init(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) {
@@ -67,7 +84,7 @@ class SwipeButton : RelativeLayout {
             ViewGroup.LayoutParams.WRAP_CONTENT)
 
         layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE)
-        centerText.text = mButtonText//"SWIPE" //TODO(replace on android res string)
+        centerText.text = mButtonText
         centerText.setTextColor(Color.WHITE)
         centerText.setPadding(35, 35, 35, 35)
         background.addView(centerText, layoutParams)
@@ -96,7 +113,7 @@ class SwipeButton : RelativeLayout {
         var typedArray = context.theme.obtainStyledAttributes(attrs, R.styleable.SwipeButton, 0, 0)
          try {
             if (typedArray.hasValue(R.styleable.SwipeButton_buttonText))
-                mButtonText = typedArray.getString(R.styleable.SwipeButton_buttonText)
+                buttonText = typedArray.getString(R.styleable.SwipeButton_buttonText)
          } finally {
              typedArray.recycle()
          }
@@ -166,7 +183,7 @@ class SwipeButton : RelativeLayout {
 
                 active = true
                 slidingButton.setImageDrawable(enabledDrawable)
-
+                mOnCheckedChangeListener?.onCheckedChanged(this@SwipeButton, active)
             }
         })
 
@@ -189,6 +206,7 @@ class SwipeButton : RelativeLayout {
 
                 active = false
                 slidingButton.setImageDrawable(disabledDrawable)
+                mOnCheckedChangeListener?.onCheckedChanged(this@SwipeButton, active)
             }
         })
 
