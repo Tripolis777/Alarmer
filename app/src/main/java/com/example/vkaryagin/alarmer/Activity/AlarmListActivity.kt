@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import com.example.vkaryagin.alarmer.Adapter.AlarmListAdapter
 import com.example.vkaryagin.alarmer.Database.Helper.ORMLiteDatabaseHelper
 import com.example.vkaryagin.alarmer.R
@@ -29,12 +30,7 @@ class AlarmListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_alarm_list)
 
-        //TODO(delete this code)
-//        val testDataset = arrayOf(
-//            AlarmItem("First Alarm", Calendar.getInstance().getTime(), true),
-//            AlarmItem("Second Alarm",  Calendar.getInstance().getTime(), true)
-//        )
-
+        Log.e(this.javaClass.name, "onCreate activity")
         val testDataset = databaseHelper.alarmRuntimeDao.queryForAll()
 
         viewManager = LinearLayoutManager(this)
@@ -44,6 +40,16 @@ class AlarmListActivity : AppCompatActivity() {
             layoutManager = viewManager
             adapter = viewAdapter
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.w(this.localClassName, "onPause()")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.w(this.localClassName, "onResume()")
     }
 
     override fun onDestroy() {

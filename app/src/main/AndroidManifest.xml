@@ -26,6 +26,10 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".Activity.AlarmEditor">
+
+        </activity>
+
         <receiver android:name=".Receiver.AlarmReceiver">
 
         </receiver>
